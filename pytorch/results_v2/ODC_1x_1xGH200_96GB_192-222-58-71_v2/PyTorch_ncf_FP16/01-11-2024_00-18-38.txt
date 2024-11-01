@@ -1,0 +1,40 @@
+DLL 2024-11-01 00:18:40.180225 - PARAMETER data : /data/ncf/cache/ml-20m  feature_spec_file : feature_spec.yaml  epochs : 2  batch_size : 10000000  valid_batch_size : 1048576  factors : 64  layers : [256, 256, 128, 64]  negative_samples : 4  learning_rate : 0.0045  topk : 10  seed : None  threshold : 1.0  beta1 : 0.25  beta2 : 0.5  eps : 1e-08  dropout : 0.5  checkpoint_dir :   load_checkpoint_path : None  mode : train  grads_accumulated : 1  amp : False  log_path : log.json  world_size : 1  distributed : False  local_rank : 0 
+Traceback (most recent call last):
+  File "/workspace/benchmark/Recommendation/NCF/ncf.py", line 383, in <module>
+    main()
+  File "/workspace/benchmark/Recommendation/NCF/ncf.py", line 224, in main
+    feature_spec = FeatureSpec.from_yaml(feature_spec_path)
+  File "/workspace/benchmark/Recommendation/NCF/feature_spec.py", line 30, in from_yaml
+    with open(path, 'r') as feature_spec_file:
+FileNotFoundError: [Errno 2] No such file or directory: '/data/ncf/cache/ml-20m/feature_spec.yaml'
+[2024-11-01 00:18:44,259] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 6862) of binary: /usr/bin/python
+Traceback (most recent call last):
+  File "/usr/local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 834, in main
+    run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 825, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 137, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 271, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+ncf.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-11-01_00:18:44
+  host      : 1c464adf3711
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 6862)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+DONE!

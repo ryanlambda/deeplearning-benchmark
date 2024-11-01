@@ -1,0 +1,75 @@
+/usr/local/lib/python3.10/dist-packages/torch/nn/utils/weight_norm.py:28: UserWarning: torch.nn.utils.weight_norm is deprecated in favor of torch.nn.utils.parametrizations.weight_norm.
+  warnings.warn("torch.nn.utils.weight_norm is deprecated in favor of torch.nn.utils.parametrizations.weight_norm.")
+DLL 2024-11-01 00:17:40.153379 - PARAMETER output : ./ 
+DLL 2024-11-01 00:17:40.153427 - PARAMETER dataset_path : /data/tacotron2/LJSpeech-1.1 
+DLL 2024-11-01 00:17:40.153443 - PARAMETER model_name : WaveGlow 
+DLL 2024-11-01 00:17:40.153454 - PARAMETER log_file : nvlog.json 
+DLL 2024-11-01 00:17:40.153464 - PARAMETER anneal_steps : None 
+DLL 2024-11-01 00:17:40.153474 - PARAMETER anneal_factor : 0.1 
+DLL 2024-11-01 00:17:40.153484 - PARAMETER config_file : None 
+DLL 2024-11-01 00:17:40.153492 - PARAMETER seed : None 
+DLL 2024-11-01 00:17:40.153501 - PARAMETER epochs : 2 
+DLL 2024-11-01 00:17:40.153511 - PARAMETER epochs_per_checkpoint : 50 
+DLL 2024-11-01 00:17:40.153520 - PARAMETER checkpoint_path :  
+DLL 2024-11-01 00:17:40.153529 - PARAMETER resume_from_last : False 
+DLL 2024-11-01 00:17:40.153538 - PARAMETER dynamic_loss_scaling : True 
+DLL 2024-11-01 00:17:40.153547 - PARAMETER amp : False 
+DLL 2024-11-01 00:17:40.153556 - PARAMETER cudnn_enabled : True 
+DLL 2024-11-01 00:17:40.153564 - PARAMETER cudnn_benchmark : True 
+DLL 2024-11-01 00:17:40.153572 - PARAMETER disable_uniform_initialize_bn_weight : False 
+DLL 2024-11-01 00:17:40.153581 - PARAMETER use_saved_learning_rate : False 
+DLL 2024-11-01 00:17:40.153589 - PARAMETER learning_rate : 0.0 
+DLL 2024-11-01 00:17:40.153598 - PARAMETER weight_decay : 0.0 
+DLL 2024-11-01 00:17:40.153606 - PARAMETER grad_clip_thresh : 65504.0 
+DLL 2024-11-01 00:17:40.153615 - PARAMETER batch_size : 48 
+DLL 2024-11-01 00:17:40.153625 - PARAMETER grad_clip : 5.0 
+DLL 2024-11-01 00:17:40.153634 - PARAMETER load_mel_from_disk : False 
+DLL 2024-11-01 00:17:40.153642 - PARAMETER training_files : filelists/ljs_audio_text_train_subset_625_filelist.txt 
+DLL 2024-11-01 00:17:40.153651 - PARAMETER validation_files : filelists/ljs_audio_text_val_filelist.txt 
+DLL 2024-11-01 00:17:40.153659 - PARAMETER text_cleaners : ['english_cleaners'] 
+DLL 2024-11-01 00:17:40.153672 - PARAMETER max_wav_value : 32768.0 
+DLL 2024-11-01 00:17:40.153681 - PARAMETER sampling_rate : 22050 
+DLL 2024-11-01 00:17:40.153690 - PARAMETER filter_length : 1024 
+DLL 2024-11-01 00:17:40.153698 - PARAMETER hop_length : 256 
+DLL 2024-11-01 00:17:40.153707 - PARAMETER win_length : 1024 
+DLL 2024-11-01 00:17:40.153748 - PARAMETER mel_fmin : 0.0 
+DLL 2024-11-01 00:17:40.153758 - PARAMETER mel_fmax : 8000.0 
+DLL 2024-11-01 00:17:40.153767 - PARAMETER rank : 0 
+DLL 2024-11-01 00:17:40.153776 - PARAMETER world_size : 1 
+DLL 2024-11-01 00:17:40.153784 - PARAMETER dist_url : tcp://localhost:23456 
+DLL 2024-11-01 00:17:40.153792 - PARAMETER group_name : group_name 
+DLL 2024-11-01 00:17:40.153801 - PARAMETER dist_backend : nccl 
+DLL 2024-11-01 00:17:40.153810 - PARAMETER bench_class :  
+DLL 2024-11-01 00:17:40.153818 - PARAMETER model_name : Tacotron2_PyT 
+Traceback (most recent call last):
+  File "/workspace/benchmark/SpeechSynthesis/Tacotron2/train.py", line 566, in <module>
+    main()
+  File "/workspace/benchmark/SpeechSynthesis/Tacotron2/train.py", line 471, in main
+    for i, batch in enumerate(train_loader):
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/usr/local/lib/python3.10/dist-packages/torch/_utils.py", line 705, in reraise
+    raise exception
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/workspace/benchmark/SpeechSynthesis/Tacotron2/waveglow/data_function.py", line 74, in __getitem__
+    return self.get_mel_audio_pair(self.audiopaths_and_text[index][0])
+  File "/workspace/benchmark/SpeechSynthesis/Tacotron2/waveglow/data_function.py", line 50, in get_mel_audio_pair
+    audio, sampling_rate = load_wav_to_torch(filename)
+  File "/workspace/benchmark/SpeechSynthesis/Tacotron2/tacotron2_common/utils.py", line 59, in load_wav_to_torch
+    sampling_rate, data = read(full_path)
+  File "/usr/local/lib/python3.10/dist-packages/scipy/io/wavfile.py", line 647, in read
+    fid = open(filename, 'rb')
+FileNotFoundError: [Errno 2] No such file or directory: '/data/tacotron2/LJSpeech-1.1/LJSpeech-1.1/wavs/LJ030-0215.wav'
+
+DONE!

@@ -1,0 +1,20 @@
+Container nvidia build =  85286409
+out dir is .
+python   run_squad.py --init_checkpoint=/data/bert_large/bert_large_uncased.pt --do_train --train_file=/data/squad/v1.1/train-v1.1.json --train_batch_size=80  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=0.0  --warmup_proportion=0.1 --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=.  --vocab_file=/data/bert_large/bert-large-uncased-vocab.txt  --config_file=/data/bert_large/bert_config.json  --max_steps=100   |& tee ./logfile.txt
+device: cuda n_gpu: 1, distributed training: False, 16-bits training: False
+DLL 2024-11-01 00:16:11.612592 - PARAMETER Config : ["Namespace(bert_model='bert-large-uncased', output_dir='.', init_checkpoint='/data/bert_large/bert_large_uncased.pt', train_file='/data/squad/v1.1/train-v1.1.json', predict_file=None, max_seq_length=384, doc_stride=128, max_query_length=64, do_train=True, do_predict=False, train_batch_size=80, predict_batch_size=8, learning_rate=0.0, num_train_epochs=2.0, max_steps=100.0, warmup_proportion=0.1, n_best_size=20, max_answer_length=30, verbose_logging=False, no_cuda=False, seed=1, gradient_accumulation_steps=1, do_lower_case=True, local_rank=-1, fp16=False, amp=False, loss_scale=0, version_2_with_negative=False, null_score_diff_threshold=0.0, vocab_file='/data/bert_large/bert-large-uncased-vocab.txt', config_file='/data/bert_large/bert_config.json', log_freq=50, json_summary='results/dllogger.json', eval_script='evaluate.py', do_eval=False, use_env=False, skip_checkpoint=False, disable_progress_bar=False, skip_cache=False, cache_dir=None)"] 
+DLL 2024-11-01 00:16:11.612976 - PARAMETER SEED : 1 
+WARNING: Output directory . already exists and is not empty. ['bind_pyt.py', 'processors', 'bert_configs', '.dockerignore', 'tokenization_utils.py', '.gitignore', 'modeling.py', 'data', 'configurations.yml', 'create_pretraining_data.py', 'NOTICE', 'inference.py', 'run_squad.py', 'file_utils.py', 'Dockerfile', 'logfile.txt', 'LICENSE', '__pycache__', 'triton', 'extract_features.py', 'schedulers.py', 'distillation', '.gitmodules', 'images', 'results', 'scripts', 'run_glue.py', 'utils.py', 'lamb_amp_opt', 'run_pretraining.py', 'run.sub', 'README.md', 'core.1520', 'bind.sh', 'run_swag.py', 'tokenization.py', 'vocab', 'checkpoints', 'optimization.py', 'requirements.txt']
+Traceback (most recent call last):
+  File "/workspace/benchmark/LanguageModeling/BERT/run_squad.py", line 1199, in <module>
+    main()
+  File "/workspace/benchmark/LanguageModeling/BERT/run_squad.py", line 909, in main
+    tokenizer = BertTokenizer(args.vocab_file, do_lower_case=args.do_lower_case, max_len=512) # for bert large
+  File "/workspace/benchmark/LanguageModeling/BERT/tokenization.py", line 101, in __init__
+    raise ValueError(
+ValueError: Can't find a vocabulary file at path '/data/bert_large/bert-large-uncased-vocab.txt'. To load the vocabulary from a Google pretrained model use `tokenizer = BertTokenizer.from_pretrained(PRETRAINED_MODEL_NAME)`
+
+real	0m1.360s
+user	0m5.262s
+sys	0m0.317s
+DONE!
